@@ -1,0 +1,89 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  
+<body>
+<app-doctor-navbar></app-doctor-navbar>
+<div class="content">
+<div class="header">
+  Prescription
+</div><br>
+<div class="row justify-content-center" id="cont">
+    <div class="col-auto">
+    <div *ngIf="haveData > 0">   
+      <table class="table" >
+        <thead class="table-head">
+            <tr>  
+                <th scope="col">S.No</th>
+                <th scope="col">Appointment Id</th>
+                <th scope="col">Patient Name</th>  
+                <th scope="col">Age</th>
+                <th scope="col">Date</th>  
+                <th scope="col">Time</th> 
+                <th scope="col" style="padding-left:20px ;">Status</th>
+            </tr>  
+        </thead>  
+        <tbody>  
+                <tr *ngFor="let i of appDetails">
+                  <td></td>
+                  <td>{{i.appointmentId}}</td>
+                  <td>{{i.patientName}}</td>
+                  <td>{{i.age}}</td>
+                  <td>{{i.date}}</td> 
+                  <td>{{i.fromTime+" - "+i.toTime}}</td>
+                  <td>
+                  <button class='btn btn-primary' (click)="openModal(i.appointmentId)">Add Prescription</button>  
+                  </td>
+              </tr>   
+        </tbody><br>  
+    </table>  </div></div>
+    <div *ngIf="haveData == 0" class="data">  
+        Don't have Data.  
+    </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+        <div class="modal-dialog" role="document">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <h4 class="modal-title"><i class="fa fa-plus"></i>&nbsp;Add Prescription</h4>
+                   <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+               </div>
+               <div class="modal-body" *ngFor="let i of rDetails">
+                <form [formGroup]="form" #UserInformation (ngSubmit)="MedicineForm()">
+                    <label>Appointment Id</label>
+                    <div class="form-group">
+                      <input type="text" class="form-control" value="{{i.appointmentId}}" id="appId" name="appId" disabled>
+                    </div>
+                    <label>Hospital Name</label>
+                    <div class="form-group">
+                    <input type="text" formControlName="hname" class="form-control" placeholder="Hospital Name" id="hname" name="hname" required>
+                    </div>
+                    <label>Doctor Name</label>
+                    <div class="form-group">
+                    <input type="text" class="form-control" value="{{i.doctorName}}" id="doctorName" name="doctorName" disabled>
+                    </div>
+                    <label>Patient Name</label>
+                    <div class="form-group">
+                    <input type="text" class="form-control" value="{{i.patientName}}" id="patientName" name="patientName" disabled>
+                    </div>
+                    <label>Age</label>
+                    <div class="form-group">
+                    <input type="text" class="form-control" value="{{i.age}}" id="age" name="age" disabled>
+                    </div>
+                    <label>Date</label>
+                    <div class="form-group">
+                    <input type="text" class="form-control" value="{{i.date}}" id="date" name="date" disabled>
+                    </div>
+                    <label>Medicine</label>
+                    <div class="form-group">
+                    <input type="text" formControlName="medicine" class="form-control" placeholder="Medicine" id="medicine" name="medicine" required>
+                    </div>
+                    <button type="submit" class="btn btn-success" style="margin-left: 40%;" (click)="onCloseHandled()">Submit</button>&nbsp;&nbsp;
+                    <button type="button" class="btn btn-danger" (click)="onCloseHandled()" name="close">Close</button>
+                 </form>
+               </div>
+            </div>
+           </div>
+            </div>
+</div>
+    </body>

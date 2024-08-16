@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  
+<body>
+<app-admin-navbar></app-admin-navbar>
+
+<div class="content">
+    <div class="header">
+        Report Details
+      </div>
+<br>
+<br>
+<div class="row justify-content-center" id="cont">
+<div class="col-auto">
+<div *ngIf="haveData > 0">   
+  <table class="table" >
+    <thead class="table-head">
+        <tr>  
+            <th scope="col">S.No</th>
+            <th sorted="col">Appointment Id</th>
+            <th scope="col">Doctor Name</th>
+            <th scope="col">Patient Name</th>  
+            <th scope="col">Date</th>
+            <th scope="col">Revisit</th>
+            <th scope="col">Revisit Date</th>
+            <th scope="col">Hospital</th>
+            <th scope="col">Reason</th>
+            <th scope="col">Progress</th>
+            <th scope="col" style="padding-left:20px ;">Action</th>
+        </tr>  
+    </thead>  
+    <tbody>  
+            <tr *ngFor="let i of appDetails">
+              <td></td>
+              <td>{{i.appointmentId}}</td>
+              <td>{{i.doctorName}}</td>
+              <td>{{i.patientName}}</td>
+              <td>{{i.date}}</td>
+              <td>{{i.revisit}}</td>
+              <td>{{i.revisitDate}}</td>
+              <td>{{i.hospital}}</td>
+              <td>{{i.reason}}</td>
+              <td>{{i.progress}}</td>
+              <td>
+                <button type="button" class='btn btn-danger' (click)="deleteReport(i.reportId)">Delete</button>  
+              </td>
+          </tr>   
+    </tbody><br>  
+</table>  </div></div>
+<div *ngIf="haveData == 0" class="data">  
+    Don't have Data.  
+</div>
+</div>
+</div></body>

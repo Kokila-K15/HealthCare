@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar fixed-top navbar-light bg-primary">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" id="#title" style="color: white;font-family: fantasy;"><i class="fa fa-plus" style="font-size:20px;color:red">&nbsp;</i>Health<span>Care</span></a>
+    </div>
+    <ul class="nav navbar-nav" >
+      <li class="active"><a href="" [routerLink]="['/']"  style="color: white;background-color: #75a4fa;">Home</a></li>
+      <li><a href="#"  style="color: white;" [routerLink]="['/patientLogin']">About us</a></li>
+      <li><a href="#" style="color: white;" [routerLink]="['/patientSignUp']">Sign Up</a></li>
+      <li>
+      <div class="navbar1">
+        <li>
+          <a>Sign In</a>
+          <ul>
+            <li>
+              <a href="" [routerLink]="['/patientLogin']">Patient Login</a>
+            </li>
+            <li>
+              <a href="" [routerLink]="['/doctorLogin']">Doctor Login</a>
+            </li>
+          </ul>
+        </li></div></li>
+      </ul>
+        <ul class="nav navbar-nav navbar-right">
+      <button class="btn btn-danger navbar-btn" [routerLink]="['/patientLogin']">Make an Appointment</button>&nbsp;
+    </ul>
+  </div>
+</nav>
+<div class="container">
+  THE BEST DOCTOR <br>
+  <div class="container1">GIVES THE LEAST <br>MEDICINES<br>
+  <button class="btn btn-primary navbar-btn" >Show more</button>&nbsp;
+</div>
+</div>
+</body>
+</html>

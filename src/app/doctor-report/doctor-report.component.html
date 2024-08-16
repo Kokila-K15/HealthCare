@@ -1,0 +1,123 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  
+<body>
+<app-doctor-navbar></app-doctor-navbar>
+<div class="content">
+<div class="header">
+  Report
+</div><br>
+<div class="row justify-content-center" id="cont">
+    <div class="col-auto">
+    <div *ngIf="haveData > 0">   
+      <table class="table" >
+        <thead class="table-head">
+            <tr>  
+                <th scope="col">S.No</th>
+                <th scope="col">Patient Name</th>  
+                <th scope="col">Age</th>  
+                <th scope="col">Date</th>
+                <th scope="col" style="padding-left:20px ;">Delete</th>
+                <th scope="col" style="padding-left:80px ;">Action</th>
+            </tr>  
+        </thead>  
+        <tbody>  
+                <tr *ngFor="let i of reportDetails">
+                  <td></td>
+                  <td>{{i.patientName}}</td>
+                  <td>{{i.age}}</td> 
+                  <td>{{i.date}}</td> 
+                  <td>
+                    <button  class='btn btn-danger' (click)="deleteReport(i.reportId)"><i class="fa fa-futboll-0">Delete</i></button> &nbsp;  
+                  </td>
+                  <td *ngIf="i.addCount== '1'"> 
+                      <button  class='btn btn-info' (click)="openModal(i.reportId)">Add Report</button>  
+                  </td>
+                  <td *ngIf="i.addCount== '0'"> <button  class='btn' style="background-color: gray;color: white;" disabled>Add Report</button> &nbsp;
+                  <button  class='btn btn-primary' (click)="openModal(i.reportId)">Update Report</button>  
+                 </td>
+              </tr>   
+        </tbody><br>  
+    </table>  </div></div>
+    <div *ngIf="haveData == 0">  
+        Don't have Data.  
+    </div>
+</div>
+
+
+
+    <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+        <div class="modal-dialog" role="document">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <h4 class="modal-title"><i class="fa fa-plus"></i>&nbsp;Add Report</h4>
+                   <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+               </div>
+               <div class="modal-body">
+                   <div class="container1" *ngFor="let i of rDetails">
+                <form [formGroup]="form" #UserInformation (ngSubmit)="ReportForm()">
+                    <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                    <label>Appointment Id</label>
+                    <div class="form-group">
+                      <input type="text" class="form-control" value="{{i.appointmentId}}" id="appId" name="appId" disabled>
+                    </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <label>Hospital Name</label>
+                            <div class="form-group">
+                               <input type="text" formControlName="hname" class="form-control" placeholder="Hospital Name" id="hname" name="hname" required>
+                            </div>
+                        </div>
+                    </div>
+                 <label>Doctor Name</label>
+                 <div class="form-group">
+                   <input type="text" class="form-control" value="{{i.doctorName}}" id="doctorName" name="doctorName" disabled>
+                 </div>
+                 <label>Patient Name</label>
+                 <div class="form-group">
+                   <input type="text" class="form-control" value="{{i.patientName}}" id="patientName" name="patientName" disabled>
+                 </div>
+                 <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                 <label>Age</label>
+                 <div class="form-group">
+                   <input type="text" class="form-control" value="{{i.age}}" id="age" name="age" disabled>
+                 </div></div>
+                 <div class="col-xs-12 col-sm-6">
+                 <label>Date</label>
+                 <div class="form-group">
+                   <input type="text" class="form-control" value="{{i.date}}" id="date" name="date" disabled>
+                 </div></div></div>
+                 <div class="row">
+                 <div class="col-xs-12 col-sm-6">
+                 <label>Revisit</label>
+                 <div class="form-group">
+                    <select name="revisit" id="revisit" style="width: 100%;padding: 3%;border: solid rgb(184, 183, 183) 0.2px;">
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                      </select>
+                 </div></div>
+                 <div class="col-xs-12 col-sm-6">
+                 <label>Revisit Date</label>
+                 <div class="form-group">
+                   <input type="text" formControlName="revisitDate" class="form-control" placeholder="-" id="revisitDate" name="revisitDate" required>
+                </div></div></div>
+                 <label>Reason</label>
+                 <div class="form-group">
+                   <input type="text" formControlName="reason" class="form-control" placeholder="Reason" id="reason" name="reason" required>
+                 </div>
+                 <label>Progress</label>
+                 <div class="form-group">
+                   <input type="text" formControlName="progress" class="form-control" placeholder="Progress" id="progress" name="progress" required>
+                 </div>
+                 <button type="submit" class="btn btn-success" name="addDoctor" style="margin-left: 40%;" (click)="onCloseHandled()">Submit</button>&nbsp;&nbsp;
+                 <button type="button" class="btn btn-danger" (click)="onCloseHandled()" name="close">Close</button>
+                 </form>
+               </div>
+            </div>
+           </div>
+            </div>
+</div>
+  </div>    
+</body>

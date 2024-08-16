@@ -1,0 +1,58 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  
+<body>
+<app-patient-navbar></app-patient-navbar>
+<div class="content">
+<div class="header">
+  Doctor
+</div>
+<br><br>
+        <form [formGroup]="form" #searchInfo (ngSubmit)="searchForm()" class="searchForm">
+          <div class="col-md-5">
+            <input type="text" class="form-control" id="name" placeholder="Search by Name">
+          </div>
+          <div class="col-md-5">
+            <input type="text" class="form-control" id="spec" placeholder="Search by Department">
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-primary hidden-xs">Search</button>
+          </div>
+      </form>  
+<br><br><br>
+  
+<div class="row justify-content-center" id="cont">
+  <div class="col-auto">
+  <div *ngIf="haveData > 0">   
+    <table class="table" >
+      <thead class="table-head">
+          <tr>  
+              <th scope="col">S.No</th>
+              <th scope="col">Doctor Name</th>  
+              <th scope="col">Email</th>  
+              <th scope="col">Mobile Number</th>  
+              <th scope="col">Specialization</th>
+              <th scope="col">Qualification</th>
+              <th scope="col" style="padding-left:50px ;">Action</th>
+          </tr>  
+      </thead>  
+      <tbody>  
+              <tr *ngFor="let i of doctorDetails">
+                <td></td>
+                <td>{{i.doctorName}}</td>
+                <td>{{i.email}}</td> 
+                <td>{{i.mobile}}</td>
+                <td>{{i.specialization}}</td> 
+                <td>{{i.qualification}}</td>
+                <td>
+                  <button  class='btn btn-info'(click)="viewDoctor(i.doctorId)">Book Appointment</button>  
+              </td>
+            </tr>   
+      </tbody><br>  
+  </table>  </div></div>
+  <div *ngIf="haveData == 0">  
+      Don't have Data.  
+  </div>
+</div>  
+</div>
+</body>  

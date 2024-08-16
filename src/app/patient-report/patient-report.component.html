@@ -1,0 +1,69 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  
+<body>
+<app-patient-navbar></app-patient-navbar>
+
+<div class="content">
+    <div class="header">
+     Appointment History
+      </div>
+<br><br>
+<br>
+<div class="row justify-content-center" id="cont">
+<div class="col-auto">
+<div *ngIf="haveData > 0">   
+  <table class="table" >
+    <thead class="table-head">
+        <tr>  
+            <th scope="col">S.No</th>
+            <th scope="col">Appointment Id</th>
+            <th scope="col">Doctor Name</th>  
+            <th scope="col">Date</th>  
+            <th scope="col" style="padding-left:20px ;">Action</th>
+        </tr>  
+    </thead>  
+    <tbody>  
+            <tr *ngFor="let i of appDetails">
+              <td></td>
+              <td>{{i.appointmentId}}</td>
+              <td>{{i.doctorName}}</td>
+              <td>{{i.date}}</td> 
+             <td>
+              <button class='btn btn-primary' (click)="openModal(i.reportId)">View</button>  
+            </td>
+          </tr>   
+    </tbody><br>  
+</table>  </div></div>
+<div *ngIf="haveData == 0" class="data">  
+    Don't have Data.  
+</div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+  <div class="modal-dialog" role="document">
+     <div class="modal-content">
+         <div class="modal-header">
+             <h3 class="modal-title">&nbsp;Report</h3>
+             <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+         </div>
+         <div class="modal-body">
+          <div class="column" id="con" *ngFor="let i of vReport">
+            <b>Report Id : </b>{{i.reportId}}<br><br>
+            <b>Appointment Id : </b>{{i.appointmentId}}<br><br>
+            <b>Hospital Name : </b>{{i.hospital}}<br><br>
+            <b>Doctor Name : </b>{{i.doctorName}}<br><br>
+            <b>Patient Name : </b>{{i.patientName}}<br><br>
+            <b>Age : </b>{{i.age}}<br><br>
+            <b>Date : </b>{{i.date}}<br><br>
+            <b>Revisit : </b>{{i.revisit}}<br><br>
+            <b>Revisit Date: </b>{{i.revisitDate}}<br><br>
+            <b>Progress : </b>{{i.progress}}<br><br>
+            <b>Reason : </b>{{i.reason}}<br><br>
+          </div>
+         </div>
+     </div>
+      </div>
+</div>
+
+</div></body>

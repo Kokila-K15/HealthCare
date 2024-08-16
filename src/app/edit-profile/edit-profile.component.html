@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  
+<app-patient-navbar></app-patient-navbar>
+
+<body>
+<div class="content">
+      <div class="header">
+        Book Appointment
+      </div><br><br>
+     
+      <div class="container" style="width: 50%;" *ngFor="let i of userDetails">
+        <form [formGroup]="form" #UserInformation (ngSubmit)="EditForm()">
+            <h1 style="color:rgb(6, 175, 110);text-align: center;font-weight: bold;">Edit Details</h1>
+        
+            <label for="name"><b>Name</b></label>
+            <div class="form-group">
+                <input type="text" class="form-control" value={{i.patientName}} id="name" name="name" required>
+              </div>
+              <label for="address"><b>Email-id</b></label>
+            <div class="form-group">
+                <input type="text" value={{i.email}} class="form-control" placeholder="Email" id="email" name="email" disabled>
+            </div>
+            <label for="mobile"><b>Mobile Number</b></label>
+            <div class="form-group">
+               <input type="text" value={{i.mobileNum}} class="form-control" placeholder="Mobile Number" id="mobile" name="mobile" required>
+            </div>
+            <label for="address"><b>Password</b></label>
+            <div class="form-group">
+                <input type="text" value={{i.passowrd}} class="form-control" placeholder="password" id="password" name="password" required>
+            </div>
+           
+                <button type="submit" class="btn" class="btn btn-success" name="login">Save Changes</button>
+          </form>
+    </div>
+</div>
+</body>

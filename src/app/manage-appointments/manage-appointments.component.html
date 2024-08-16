@@ -1,0 +1,50 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  
+<body>
+<app-patient-navbar></app-patient-navbar>
+
+<div class="content">
+    <div class="header">
+        Manage Appointment
+      </div>
+<br><br>
+<p>Appointment time will be shown once <br>the appointment is accepted by the doctor.</p>
+<br>
+<div class="row justify-content-center" id="cont">
+<div class="col-auto">
+<div *ngIf="haveData > 0">   
+  <table class="table" >
+    <thead class="table-head">
+        <tr>  
+            <th scope="col">S.No</th>
+            <th scope="col">Appointment Id</th>
+            <th scope="col">Doctor Name</th>  
+            <th scope="col">Date</th>  
+            <th scope="col">Time</th> 
+            <th scope="col" style="padding-left:20px ;">Status</th>
+        </tr>  
+    </thead>  
+    <tbody>  
+            <tr *ngFor="let i of appDetails">
+              <td></td>
+              <td>{{i.appointmentId}}</td>
+              <td>{{i.doctorName}}</td>
+              <td>{{i.date}}</td> 
+              <td>{{i.fromTime+" - "+i.toTime}}</td>
+              <td *ngIf="i.status== 'Waiting'">
+                <button class='btn btn-info'>{{i.status}}</button>  
+             </td>
+             <td *ngIf="i.status== 'Rejected'">
+              <button class='btn btn-danger'>{{i.status}}</button>  
+            </td>
+            <td *ngIf="i.status== 'Accepted'">
+              <button class='btn btn-success'>{{i.status}}</button> &nbsp;
+            </td>
+          </tr>   
+    </tbody><br>  
+</table>  </div></div>
+<div *ngIf="haveData == 0" class="data">  
+    Don't have Data.  
+</div>
+</div>

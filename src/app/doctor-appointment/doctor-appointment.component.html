@@ -1,0 +1,81 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  
+<body>
+<app-doctor-navbar></app-doctor-navbar>
+
+<div class="content">
+    <div class="header">
+        Manage Appointment
+      </div>
+<br>
+<br>
+<div class="row justify-content-center" id="cont">
+<div class="col-auto">
+<div *ngIf="haveData > 0">   
+  <table class="table" >
+    <thead class="table-head">
+        <tr>  
+            <th scope="col">S.No</th>
+            <th scope="col">Appointment Id</th>
+            <th scope="col">Patient Name</th>  
+            <th scope="col">Age</th>
+            <th scope="col">Mobile</th>
+            <th scope="col">Date</th>  
+            <th scope="col">Time</th> 
+            <th scope="col" style="padding-left:20px ;">Status</th>
+        </tr>  
+    </thead>  
+    <tbody>  
+            <tr *ngFor="let i of appDetails">
+              <td></td>
+              <td>{{i.appointmentId}}</td>
+              <td>{{i.patientName}}</td>
+              <td>{{i.age}}</td>
+              <td>{{i.mobileNum}}</td>
+              <td>{{i.date}}</td> 
+              <td>{{i.fromTime+" - "+i.toTime}}</td>
+              <td *ngIf="i.status== 'Waiting'">
+                <button type="submit" class='btn btn-info' (click)="openModal(i.appointmentId)">Accept</button>  &nbsp;&nbsp;
+                <button type="submit" class='btn btn-danger' (click)="reject(i.appointmentId)">Reject</button>  
+              </td>
+              <td *ngIf="i.status== 'Rejected'">
+                <button type="button" class='btn btn-danger'>Rejected</button>  
+              </td>
+              <td *ngIf="i.status == 'Accepted'">
+                <button type="button" class='btn btn-success'>Accepted</button>  
+              </td>
+          </tr>   
+    </tbody><br>  
+</table>  </div></div>
+<div *ngIf="haveData == 0" class="data">  
+    Don't have Data.  
+</div>
+</div>
+<div class="mcon">
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+           <div class="modal-header">
+             <h4 style="text-align: center;color: green;font-weight: bold;">Slot Time</h4>
+               <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+           </div>
+           <div class="modal-body" >
+             <form [formGroup]="form" #UserInformation (ngSubmit)="TimeForm()">
+             <label style="padding-left:30% ;">From Time</label>
+             <div class="form-group"  style="padding-left:30% ;">
+               <input type="time" formControlName="FromTime" class="form-control" placeholder="" id="FromTime" name="FromTime" required>
+             </div>
+             <label style="padding-left:30% ;">To Time</label>
+             <div class="form-group" style="padding-left:30% ;">
+               <input type="time" formControlName="ToTime" class="form-control" placeholder="" id="ToTime" name="ToTime" required>
+             </div>
+            
+             <button type="submit" class="btn btn-success" name="addDoctor" style="margin-left: 25%;" (click)="onCloseHandled()">Accept</button>&nbsp;&nbsp;
+             <button type="button" class="btn btn-danger" (click)="onCloseHandled()" name="close">Close</button>
+             </form>
+           </div>
+           
+       </div>
+        </div>
+</div></div>

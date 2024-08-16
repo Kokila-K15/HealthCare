@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  
+<body>
+<app-admin-navbar></app-admin-navbar>
+
+<div class="content">
+    <div class="header">
+        Patient
+      </div>
+<br>
+<br>
+<div class="row justify-content-center" id="cont">
+<div class="col-auto">
+<div *ngIf="haveData > 0">   
+  <table class="table" >
+    <thead class="table-head">
+        <tr>  
+            <th scope="col">S.No</th>
+            <th scope="col">Patient Id</th>
+            <th scope="col">Patient Name</th>  
+            <th scope="col">Email</th>
+            <th scope="col">Mobile</th>
+            <th scope="col" style="padding-left:20px ;">Action</th>
+        </tr>  
+    </thead>  
+    <tbody>  
+            <tr *ngFor="let i of appDetails">
+              <td></td>
+              <td>{{i.userId}}</td>
+              <td>{{i.userName}}</td>
+              <td>{{i.email}}</td>
+              <td>{{i.mobile}}</td>
+              <td>
+                <button type="button" class='btn btn-danger' (click)="deleteUser(i.userId)">Delete</button>  
+              </td>
+          </tr>   
+    </tbody><br>  
+</table>  </div></div>
+<div *ngIf="haveData == 0" class="data">  
+    Don't have Data.  
+</div>
+</div>
+</div></body>

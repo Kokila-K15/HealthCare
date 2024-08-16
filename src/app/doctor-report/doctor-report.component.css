@@ -1,0 +1,58 @@
+body{
+  height:100%;
+  width:100%;
+  background-color: whitesmoke;
+}
+.modal-header{
+background-color:rgba(19, 166, 177, 0.842);
+color: white;
+padding-bottom: 5px;
+}
+div.content {
+margin-left: 210px;
+margin-right: 10px;
+padding: 1px 0px;
+height: 1000px;
+background-color: white;
+}
+.header{
+background-color: teal;
+font-size: 20px;
+color: white;
+padding: 10px;
+}
+@media screen and (max-width: 700px) {
+div.content {margin-left: 0;
+margin-right: 0;}
+table{
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+}
+table{
+
+margin-left: auto;
+margin-right: auto;
+
+width: 75%;
+}
+
+tr td:first-child:before
+{
+counter-increment: Serial;      /* Increment the Serial counter */
+content: counter(Serial); /* Display the counter */
+}
+body
+{
+counter-reset: Serial;           /* Set the Serial counter to 0 */
+}
+.table-head{
+background-color: rgb(224, 219, 224);
+padding: 15px;
+}
+.searchForm{
+width: 40%;
+margin-left: auto;
+margin-right: auto;
+}
